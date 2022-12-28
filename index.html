@@ -5,5 +5,13 @@
   </head>
   <body>
     Hello!!
+
+    <script>
+      if (typeof window.ethereum != 'undefined') {
+        console.log('metamask available');
+      } else {
+        console.log('no metamask');
+      }
+    </script>
   </body>
 </html>
