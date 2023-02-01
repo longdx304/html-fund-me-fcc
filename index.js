@@ -2,8 +2,10 @@ import { ethers } from './ethers-5.2.esm.min.js';
 import { abi, contractAddress } from './constants.js';
 
 const connectButton = document.getElementById('connectButton');
+const getBalanceButton = document.getElementById('getBalance');
 const fundButton = document.getElementById('fundButton');
 connectButton.onclick = connect;
+getBalanceButton.onclick = getBalance;
 fundButton.onclick = fund;
 
 async function connect() {
@@ -17,6 +19,14 @@ async function connect() {
   } else {
     document.getElementById('connectButton').innerHTML =
       'Please install metamask';
+  }
+}
+
+async function getBalance() {
+  if (typeof window.ethereum != 'undefined') {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const balance = await provider.getBalance(contractAddress);
+    console.log(ethers.utils.formatEther(balance));
   }
 }
 
